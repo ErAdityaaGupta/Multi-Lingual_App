@@ -1,26 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>    
-    
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<c:set var="theLocale" 
+value="${not empty param.theLocale ? param.theLocale : pageContext.request.locale}"
+scope="session" />
+
+<fmt:setLocale value="${theLocale}" />
+
+<fmt:setBundle basename="com.luv2code.jsp.tagdemo.i18n.resources.mylabels" />
+
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
+
 <body>
 
-	<fmt:message key="lebel.greeting"  /> <br><br>
-	
-	<fmt:message key="label.firstname"   /><i>Aditya</i><br>
-	
-	<fmt:message key="label.lastname"  /><i>Gupta</i><br>
-	
-	<fmt:message key="label.welcome"  />
+<a href="i18n-messages-test.jsp?theLocale=en_US">English (US)</a>
+ |
+<a href="i18n-messages-test.jsp?theLocale=es_ES">Spanish (ES)</a>
+ |
+<a href="i18n-messages-test.jsp?theLocale=de_DE">German (DE)</a>
+ 
+<hr>
 
+<fmt:message key="label.greeting" /> <br/> <br/>
 
+<fmt:message key="label.forstname" /> <i>John</i> <br/>
+
+<fmt:message key="label.lastname" /> <i>Doe</i> <br/><br/>
+
+<fmt:message key="label.welcome" /> <br/>
+
+<hr>
+
+Selected locale: ${theLocale}
 
 </body>
+
 </html>
+
